@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>customSelect.js - Демо</title>
+    <link rel="stylesheet" href="customSelect.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .demo-section {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .select-container {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>⚡customSelect.js</h1>
+    <p>Современный, доступный кастомный селект для ваших проектов</p>
+
+    <!-- Демо 1: Простой пример -->
+    <div class="demo-section">
+        <h2>1. Простой селект</h2>
+        <p>Просто передайте массив строк:</p>
+        <div class="code-block">
+// Простейшее использование <br><br>
+new CustomSelect(['Яблоко', 'Банан', 'Апельсин'])
+        </div>
+        <div class="select-container">
+            <div id="simpleSelect"></div>
+        </div>
+    </div>
+
+    <!-- Демо 2: Продвинутый пример -->
+    <div class="demo-section">
+        <h2>2. Селект с плейсхолдером</h2>
+        <p>Используйте объект для тонкой настройки:</p>
+        <div class="code-block">
+// Продвинутое использование <br><br>
+new CustomSelect({
+    options: ['Москва', 'СПб', 'Казань'],
+    placeholder: 'Выберите город...'
+})
+        </div>
+        <div class="select-container">
+            <div id="advancedSelect"></div>
+        </div>
+    </div>
+
+    <!-- Демо 3: События -->
+    <div class="demo-section">
+        <h2>3. Работа с событиями</h2>
+        <p>Следите за изменениями значения:</p>
+        <div class="code-block">
+// Подписка на изменения  <br><br>
+select.on('change', (value) => {
+    console.log('Выбрано:', value)
+    document.getElementById('selectedValue').textContent = value
+})
+        </div>
+        <div class="select-container">
+            <div id="eventSelect"></div>
+            <p style="margin-top: 15px;">Выбрано: <strong id="selectedValue">—</strong></p>
+        </div>
+    </div>
+
+    <!-- Демо 4: Разные контейнеры -->
+    <div class="demo-section">
+        <h2>4. Размещение в любом контейнере</h2>
+        <p>Селекты можно размещать где угодно:</p>
+        <div class="code-block">
+// В элементе с ID  <br><br>
+new CustomSelect(['Опция A', 'Опция B'], 'container1')
+
+// Прямо в DOM-элементе  
+new CustomSelect(['Опция X', 'Опция Y'], document.getElementById('container2'))
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+            <div class="select-container">
+                <h3>Левый блок</h3>
+                <div id="container1"></div>
+            </div>
+            <div class="select-container">
+                <h3>Правый блок</h3>
+                <div id="container2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="customSelect.js"></script>
+    <script>
+        // Демо 1: Простой селект
+        new CustomSelect(['Яблоко', 'Банан', 'Апельсин'], 'simpleSelect')
+        
+        // Демо 2: Продвинутый селект
+        new CustomSelect({
+            options: ['Москва', 'СПб', 'Казань'],
+            placeholder: 'Выберите город...'
+        }, 'advancedSelect')
+        
+        // Демо 3: События
+        const eventSelect = new CustomSelect({
+            options: ['Красный', 'Зеленый', 'Синий'],
+            placeholder: 'Выберите цвет...'
+        }, 'eventSelect')
+        
+        eventSelect.on('change', (value) => {
+            document.getElementById('selectedValue').textContent = value
+        })
+        
+        // Демо 4: Разные контейнеры
+        new CustomSelect(['Опция A', 'Опция B'], 'container1')
+        new CustomSelect(['Опция X', 'Опция Y'], 'container2')
+    </script>
+</body>
+</html>
